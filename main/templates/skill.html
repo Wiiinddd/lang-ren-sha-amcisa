@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skill</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/role.css') }}">
+</head>
+
+<body class="phase-{{ room.phase }}">
+    <div class="role-card">
+        <h1>{{ context.title }}</h1>
+
+        <p>Name: {{ context.player.name }}</p>
+        <p>Role: {{ context.player.role }}</p>
+
+        {% if request.args.get("message") %}
+            <p>{{ request.args.get("message") }}</p>
+        {% endif %}
+
+        {% if context.night_result %}
+            <div class="role-name">
+                {{ context.night_result.message }}
+            </div>
+        {% endif %}
+
+        <p>{{ context.message }}</p>
+
+        {% if context.wolf_summary %}
+            <p>
+                Locked:
+                {{ context.wolf_summary.locked_count }}
+                /
+                {{ context.wolf_summary.total_count }}
+            </p>
+
+            {% for target_id, vote_count in context.wolf_summary.votes.items() %}
+                <p>{{ players[target_id].name }}: {{ vote_count }}</p>
+            {% endfor %}
+        {% endif %}
+
+        {% if context.action_url and (context.targets or context.options) and context.can_act %}
+            <form action="{{ context.action_url }}" method="post">
+                {% if context.options %}
+                    <p>
+                        <select name="option">
+                            {% for option in context.options %}
+                                <option value="{{ option.value }}">{{ option.label }}</option>
+                            {% endfor %}
+                        </select>
+                    </p>
+                {% endif %}
+
+                {% if context.targets %}
+                    <p>
+                        <select name="target_id">
+                            {% for target in context.targets %}
+                                <option value="{{ target.user_id }}">
+                                    {{ target.name }} - {{ target.role }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </p>
+                {% endif %}
+
+                <button type="submit">Lock Skill</button>
+            </form>
+        {% endif %}
+
+        <a href="{{ url_for('room_page') }}">Back to Room</a>
+    </div>
+</body>
+</html>

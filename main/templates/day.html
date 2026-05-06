@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Day Phase</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/room.css') }}">
+</head>
+
+<body class="phase-day">
+    <div class="room-box">
+        <h1>Day Phase</h1>
+
+        <p>Room ID: {{ room.room_id }}</p>
+
+        <h3>Announcements</h3>
+        {% for announcement in room.day_state.announcements %}
+            <p>{{ announcement }}</p>
+        {% else %}
+            <p>No announcements yet.</p>
+        {% endfor %}
+
+        <a class="button" href="{{ url_for('skill_page') }}">My Skill</a>
+        <a class="button" href="{{ url_for('room_page') }}">Back to Room</a>
+    </div>
+</body>
+</html>

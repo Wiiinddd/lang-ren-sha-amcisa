@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Role</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/role.css') }}">
+</head>
+
+<body class="phase-{{ room.phase }}">
+    <div class="role-card">
+        <div class="role-image-slot">
+            <img
+                src="{{ url_for('static', filename='role_images/' ~ role_image_filename) }}"
+                alt="{{ player.role }}"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+            <div class="role-image-placeholder">
+                Put PNG here:<br>
+                static/role_images/{{ role_image_filename }}
+            </div>
+        </div>
+
+        <div class="role-name">
+            {{ player.role }}
+        </div>
+
+        <a href="{{ url_for('room_page') }}">Back to Room</a>
+        <a href="{{ url_for('skill_page') }}">My Skill</a>
+
+        {% if is_host and room.status == "started" %}
+            <form action="{{ url_for('start_night') }}" method="post">
+                <button type="submit">Start Night</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>

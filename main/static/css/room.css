@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #171717;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+body.phase-day {
+    background: #f5f5f5;
+}
+
+body.phase-night {
+    background: #050505;
+}
+
+.room-box {
+    background: #262626;
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.player-list {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.player-card {
+    background: #333;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+}
+
+button,
+a.button {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+button:hover,
+a.button:hover {
+    background: #b91c1c;
+}
+
+.host-label {
+    color: #facc15;
+    font-weight: bold;
+}
+
+.host-tag {
+    background: #facc15;
+    color: black;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.assign-box {
+    background: #1f1f1f;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 25px;
+}
+
+.role-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0;
+}
+
+.role-row label {
+    font-weight: bold;
+}
+
+.role-row input {
+    width: 70px;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    text-align: center;
+}
+
+#assign-message {
+    font-weight: bold;
+    margin-top: 12px;
+}

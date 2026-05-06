@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Werewolf Room</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/room.css') }}">
+</head>
+
+<body class="phase-{{ room.phase }}">
+    <div class="room-box">
+        <h1>Werewolf Room</h1>
+
+        <h2>Room ID: {{ room_id }}</h2>
+
+        <p>Your Name: {{ player.name }}</p>
+        {% if player.role %}
+            <p>Your Role: {{ player.role }}</p>
+        {% endif %}
+
+        {% if is_host %}
+            <p class="host-label">You are the host player.</p>
+        {% endif %}
+
+        <h3>Players in Room</h3>
+
+        <div class="player-list">
+            {% for id, p in players.items() %}
+                <div class="player-card">
+                    Player {{ loop.index }}: {{ p.name }}
+
+                    {% if p.user_id == room.host_user_id %}
+                        <span class="host-tag">Host</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <p>Total Players: {{ players|length }}</p>
+
+        {% if not roles_assigned and is_host %}
+            <a class="button" href="{{ url_for('role_options') }}">Choose Game Options</a>
+
+        {% elif not roles_assigned and not is_host %}
+            <p>Waiting for host to choose game options...</p>
+
+        {% else %}
+            <a class="button" href="{{ url_for('my_role') }}">View My Role</a>
+            <a class="button" href="{{ url_for('skill_page') }}">My Skill</a>
+
+            {% if is_host and not game_started %}
+                <form action="{{ url_for('start_game_route') }}" method="post">
+                    <button type="submit">Start Game</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>

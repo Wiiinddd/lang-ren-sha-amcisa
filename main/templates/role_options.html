@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Choose Role Options</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/role_options.css') }}">
+</head>
+
+<body>
+    <div class="options-box">
+        <h1>Choose Game Options</h1>
+
+        <h2>Room ID: {{ room_id }}</h2>
+
+        <p>Total Players: <span id="player-count">{{ player_count }}</span></p>
+
+        <div class="role-option-card">
+            <h3>Role Settings</h3>
+
+            {% for role in roles %}
+                {% set count = role_counts.get(role.name, role.default_count) %}
+                <div class="role-row" data-role="{{ role.name }}">
+                    <label>{{ role.name }}</label>
+
+                    <div class="stepper">
+                        <button
+                            type="button"
+                            class="step-btn minus-btn"
+                            onclick="changeRoleCount('{{ role.name }}', -1)"
+                        >
+                            -
+                        </button>
+
+                        <span class="role-count" id="{{ role.name }}-count">{{ count }}</span>
+
+                        <button
+                            type="button"
+                            class="step-btn plus-btn"
+                            onclick="changeRoleCount('{{ role.name }}', 1)"
+                        >
+                            +
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="count-box">
+                Selected Roles:
+                <span id="selected-role-count">0</span>
+                /
+                <span>{{ player_count }}</span>
+            </div>
+
+            <p id="assign-message"></p>
+
+            <button class="assign-btn" onclick="assignRoles()">Assign Roles</button>
+
+            <br>
+
+            <a class="back-link" href="{{ url_for('room_page') }}">Back to Room</a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/role_options.js') }}"></script>
+</body>
+</html>

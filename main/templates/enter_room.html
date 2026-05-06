@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Werewolf Room</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/room.css') }}">
+</head>
+
+<body>
+    <div class="room-box">
+        <h1>Werewolf Room</h1>
+
+        {% if error %}
+            <p id="assign-message">{{ error }}</p>
+        {% endif %}
+
+        <a class="button" href="{{ url_for('create_room_route') }}">Create New Room</a>
+
+        <h3>Join Room</h3>
+
+        <form action="{{ url_for('join_room') }}" method="post">
+            <p>
+                <input
+                    type="text"
+                    name="room_id"
+                    value="{{ room_id }}"
+                    placeholder="Room ID"
+                    required
+                >
+            </p>
+
+            <p>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+            </p>
+
+            <button type="submit">Join Room</button>
+        </form>
+    </div>
+</body>
+</html>
