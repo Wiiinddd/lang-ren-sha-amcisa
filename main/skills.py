@@ -1,4 +1,4 @@
-from game_roles import (
+from main.game_roles import (
     ROLE_GUARD,
     ROLE_HUNTER,
     ROLE_IDIOT,
@@ -12,7 +12,7 @@ from game_roles import (
     ROLE_WOLF_KING,
     is_wolf_role,
 )
-from game_state import (
+from main.game_state import (
     add_revive_status,
     check_win_condition,
     get_alive_players,
@@ -21,7 +21,7 @@ from game_state import (
     is_last_wolf,
     kill_player,
 )
-from night_phase import (
+from main.night_phase import (
     advance_night_role,
     can_mechanical_wolf_kill,
     choose_final_wolf_target,

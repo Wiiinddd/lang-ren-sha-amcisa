@@ -1,5 +1,5 @@
-from game_roles import get_role_names
-from game_state import assign_roles
+from main.game_roles import get_role_names
+from main.game_state import assign_roles
 
 
 def get_available_roles():
