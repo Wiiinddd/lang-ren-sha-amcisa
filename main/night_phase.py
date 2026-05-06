@@ -1,7 +1,7 @@
 import random
 import time
 
-from game_roles import (
+from main.game_roles import (
     NIGHT_ORDER,
     ROLE_GUARD,
     ROLE_MECHANICAL_WOLF,
@@ -13,7 +13,7 @@ from game_roles import (
     ROLE_WOLF_KING,
     is_wolf_role,
 )
-from game_state import get_players_by_role, start_day
+from main.game_state import get_players_by_role, start_day
 
 MAX_TURN_TIME = 180
 
