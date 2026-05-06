@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, redirect, render_template, request, session, url_for
 
-from game_roles import get_role_definitions, get_role_image_filename
-from game_state import (
+from main.game_roles import get_role_definitions, get_role_image_filename
+from main.game_state import (
     assign_roles as assign_room_roles,
     clean_role_counts,
     create_player,
@@ -13,8 +13,8 @@ from game_state import (
     start_game,
     validate_role_counts,
 )
-from night_phase import get_current_night_info, init_night_phase, lock_night_action
-from skills import get_skill_context, submit_day_skill, submit_night_skill
+from main.night_phase import get_current_night_info, init_night_phase, lock_night_action
+from main.skills import get_skill_context, submit_day_skill, submit_night_skill
 
 app = Flask(__name__)
 app.secret_key = "my_werewolf_secret_key_123"
