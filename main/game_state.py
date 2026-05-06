@@ -1,7 +1,7 @@
 import random
 import uuid
 
-from game_roles import (
+from main.game_roles import (
     ROLE_BEAR,
     ROLE_HUNTER,
     ROLE_IDIOT,
